@@ -2,3 +2,28 @@
     {% extends 'base.html' %}
     {% load socialaccount %}
     {% providers_media_js %}
+
+    {% block body %}
+    {% if user.is_authenticated %}
+
+    <p style="text-align:center;">
+      <h2 style="text-align:center;">
+        Upload File
+      </h2>
+      
+        <form style="text-align:center;" action='/upload'>
+            {% csrf_token %}
+            <input type='file'  name='document'>
+            <button type ="submit">Upload File</button>
+        </form>
+
+      
+
+    </p>
+    
+    {% else %}
+    <p style="text-align:center;"><img src="https://drive.google.com/uc?id=1C8TjuxxpoZdrTxrgWIkZDYcjnkJL_0rM" width="400" 
+        height="500" alt="Logo"></p>
+    <h3 style="text-align:center;">Please Authenticate to view page</h3>
+    {% endif %}
+    {% endblock body %}
