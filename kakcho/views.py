@@ -63,7 +63,7 @@ def process(request):
             i+=1
             
         path = os.getcwd()+'/'
-        with zipfile.ZipFile('final.zip','w') as zipF:
+        with zipfile.ZipFile('COMBINED_SOLUTIONS.zip','w') as zipF:
             for file in names:
                 zipF.write(file,compress_type=zipfile.ZIP_DEFLATED)
         for x in names:
@@ -91,4 +91,5 @@ def download(request):
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
             return response
+    os.remove(f)
     raise Http404
